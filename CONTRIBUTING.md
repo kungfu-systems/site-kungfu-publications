@@ -18,8 +18,10 @@ file as the source of a correction.
 1. Add a unique publication entry to `catalog.json`.
 2. Add the reviewed source-locale core under `content/<id>/core/`.
 3. Select or implement a renderer without mixing content into release logic.
-4. Run `make all` and inspect every rendered PDF page.
-5. Commit the generated Markdown projection, but not `_build/`.
+4. Start visual work from `design-system/templates/` and reuse design tokens or
+   declared SVG assets instead of copying color and font definitions.
+5. Run `make all` and inspect every rendered PDF page.
+6. Commit the generated Markdown projection, but not `_build/`.
 
 ## Add a Locale
 
@@ -36,14 +38,22 @@ or publication status.
 ## Checks
 
 ```sh
+make design
+make design-check
 make md
 make check
 make pdf
 ```
 
-`make check` verifies the catalog, core paths, locale bindings, Python syntax,
-and generated Markdown freshness. `make pdf` creates PDF files and SHA-256
-checksums under `_build/pdf/`.
+`make design` regenerates the shared LaTeX package from the JSON tokens.
+`make design-check` rejects stale generated styles, undeclared or inaccessible
+SVGs, off-palette colors, and template drift. `make check` verifies the catalog,
+core paths, locale bindings, Python syntax, and generated Markdown freshness.
+`make pdf` creates PDF files and SHA-256 checksums under `_build/pdf/`.
+
+Font binaries are not committed. Follow
+[`design-system/fonts/README.md`](design-system/fonts/README.md) and ensure a
+documented font from every stack is installed on the build machine.
 
 ## Commit Requirements
 

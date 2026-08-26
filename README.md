@@ -37,6 +37,7 @@ translations yet.
 catalog.json                       publication and locale registry
 content/<publication>/core/       reviewed content cores by locale
 docs/<locale>/                     generated Markdown projections
+design-system/                     shared tokens, templates, fonts, and SVG assets
 scripts/                           projection builders and checks
 _build/pdf/                        generated PDF projections, not committed
 ```
@@ -52,6 +53,16 @@ Markdown generation uses the Python standard library:
 ```sh
 make md
 make check
+```
+
+The reusable visual system is source-owned in
+[`design-system/`](design-system/). Its JSON tokens generate the shared LaTeX
+style used by every current PDF renderer, while the templates and SVG material
+pack are directly reusable by future publications:
+
+```sh
+make design
+make design-check
 ```
 
 PDF generation requires Python 3 and

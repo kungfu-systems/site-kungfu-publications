@@ -13,6 +13,10 @@ Each document links to its latest downloadable PDF projection.
 - [`CONTRIBUTING.md`](../CONTRIBUTING.md): adding publications and locales.
 - [`catalog.json`](../catalog.json): machine-readable publication registry.
 - [`content/`](../content/): reviewed source cores.
+- [`design-system/README.md`](../design-system/README.md): reusable visual
+  language, templates, font policy, and build workflow.
+- [`design-system/examples/asset-gallery.md`](../design-system/examples/asset-gallery.md):
+  GitHub-viewable SVG material gallery.
 
 ## Policies
 

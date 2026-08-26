@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Independent workspaces</title>
+  <desc id="desc">Three independent workspaces move in parallel through review into one delivery.</desc>
+  <rect width="1600" height="900" fill="#FAFBFB"/>
+  <g font-family="Helvetica Neue, Arial, sans-serif" text-anchor="middle">
+    <rect x="100" y="132" width="430" height="168" rx="28" fill="#DFF5EF" stroke="#0F766E" stroke-width="7"/>
+    <rect x="100" y="366" width="430" height="168" rx="28" fill="#F3F7F6" stroke="#4F86F7" stroke-width="7"/>
+    <rect x="100" y="600" width="430" height="168" rx="28" fill="#F3F7F6" stroke="#F5B942" stroke-width="7"/>
+    <text x="315" y="214" fill="#111827" font-size="43" font-weight="700">WORKSPACE A</text>
+    <text x="315" y="260" fill="#374151" font-size="23">RESEARCH</text>
+    <text x="315" y="448" fill="#111827" font-size="43" font-weight="700">WORKSPACE B</text>
+    <text x="315" y="494" fill="#374151" font-size="23">DRAFT</text>
+    <text x="315" y="682" fill="#111827" font-size="43" font-weight="700">WORKSPACE C</text>
+    <text x="315" y="728" fill="#374151" font-size="23">VERIFY</text>
+    <rect x="712" y="306" width="300" height="288" rx="144" fill="#111827"/>
+    <path d="M812 454L858 500L929 410" fill="none" stroke="#2DD4BF" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="862" y="555" fill="#FFFFFF" font-size="30" font-weight="700" letter-spacing="3">REVIEW</text>
+    <rect x="1200" y="318" width="310" height="264" rx="34" fill="#0F766E"/>
+    <path d="M1290 410H1420V508H1290ZM1325 382H1385" fill="none" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1355" y="548" fill="#FFFFFF" font-size="30" font-weight="700" letter-spacing="3">DELIVERY</text>
+  </g>
+  <g fill="none" stroke="#0F766E" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M530 216H620V405H712M530 450H712M530 684H620V495H712"/>
+    <path d="M1012 450H1175"/>
+    <path d="M1150 424L1184 450L1150 476"/>
+  </g>
+</svg>

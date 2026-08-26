@@ -13,6 +13,8 @@ import shutil
 import subprocess
 from pathlib import Path
 
+from design_system import install_tex_style
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = REPO_ROOT / "content/atlas-lite-introduction/core/zh-CN.json"
@@ -26,30 +28,10 @@ DEFAULT_OUTPUT = (
 TEX = r"""
 \documentclass[12pt]{article}
 \usepackage[paperwidth=13.333in,paperheight=7.5in,margin=0in]{geometry}
-\usepackage{fontspec}
-\usepackage{xeCJK}
-\usepackage{xcolor}
+\usepackage{kungfu-publications}
 \usepackage{tikz}
 \usepackage{hyperref}
 \usetikzlibrary{arrows.meta,calc,positioning,shapes.geometric}
-
-\setmainfont{Helvetica Neue}
-\setsansfont{Helvetica Neue}
-\setCJKmainfont{PingFang SC}
-\setCJKsansfont{PingFang SC}
-\renewcommand{\familydefault}{\sfdefault}
-
-\definecolor{KFBlack}{HTML}{111827}
-\definecolor{KFSlate}{HTML}{374151}
-\definecolor{KFGreen}{HTML}{0F766E}
-\definecolor{KFMint}{HTML}{DFF5EF}
-\definecolor{KFLight}{HTML}{F3F7F6}
-\definecolor{KFLighter}{HTML}{FAFBFB}
-\definecolor{KFLine}{HTML}{D8E5E1}
-\definecolor{KFAqua}{HTML}{2DD4BF}
-\definecolor{KFCoral}{HTML}{F97360}
-\definecolor{KFAmber}{HTML}{F5B942}
-\definecolor{KFBlue}{HTML}{4F86F7}
 
 \hypersetup{
   pdftitle={Atlas Lite 普通人的多 Agent 工作法},
@@ -538,6 +520,7 @@ def localized_tex(source: Path) -> str:
 
 def build(source: Path, build_dir: Path, output: Path) -> None:
     build_dir.mkdir(parents=True, exist_ok=True)
+    install_tex_style(build_dir)
     output.parent.mkdir(parents=True, exist_ok=True)
     tex_path = build_dir / "atlas-lite-plain-language-slides.tex"
     tex_path.write_text(localized_tex(source), encoding="utf-8")

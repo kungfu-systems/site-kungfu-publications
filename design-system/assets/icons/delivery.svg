@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Delivery icon</title>
+  <desc id="desc">A downward arrow enters a package to represent downloadable delivery.</desc>
+  <rect width="256" height="256" rx="52" fill="#DFF5EF"/>
+  <path d="M55 128H201V199H55Z" fill="#FFFFFF" stroke="#0F766E" stroke-width="13" stroke-linejoin="round"/>
+  <path d="M128 48V143M90 106L128 144L166 106" fill="none" stroke="#0F766E" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M55 128L82 91H174L201 128" fill="#FFFFFF" stroke="#0F766E" stroke-width="13" stroke-linejoin="round"/>
+</svg>

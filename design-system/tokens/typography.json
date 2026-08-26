@@ -1,0 +1,27 @@
+{
+  "schema": "kungfu.publications.typography/v1",
+  "families": {
+    "latin_sans": {
+      "primary": "Helvetica Neue",
+      "fallbacks": ["TeX Gyre Heros", "Arial"],
+      "distribution": "System font; binary is not redistributed"
+    },
+    "cjk_sans": {
+      "primary": "PingFang SC",
+      "fallbacks": ["Noto Sans CJK SC", "Source Han Sans SC"],
+      "distribution": "System or separately installed font; binary is not redistributed"
+    },
+    "mono": {
+      "primary": "Menlo",
+      "fallbacks": ["DejaVu Sans Mono", "TeX Gyre Cursor"],
+      "scale": 0.82,
+      "distribution": "System font; binary is not redistributed"
+    }
+  },
+  "principles": [
+    "Use sans-serif typography for direct, contemporary reading.",
+    "Use weight and spacing before adding decorative typefaces.",
+    "Keep body text large enough for print and projected screens.",
+    "Use monospaced type only for commands, paths, and machine-readable facts."
+  ]
+}

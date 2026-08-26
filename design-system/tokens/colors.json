@@ -1,0 +1,17 @@
+{
+  "schema": "kungfu.publications.colors/v1",
+  "colors": [
+    {"id": "black", "tex_name": "KFBlack", "hex": "111827", "role": "Primary text and dark foundations"},
+    {"id": "slate", "tex_name": "KFSlate", "hex": "374151", "role": "Secondary text and surfaces"},
+    {"id": "green", "tex_name": "KFGreen", "hex": "0F766E", "role": "Trust, progress, and primary actions"},
+    {"id": "mint", "tex_name": "KFMint", "hex": "DFF5EF", "role": "Positive and explanatory backgrounds"},
+    {"id": "light", "tex_name": "KFLight", "hex": "F3F7F6", "role": "Cards and soft page sections"},
+    {"id": "lighter", "tex_name": "KFLighter", "hex": "FAFBFB", "role": "Quiet page background"},
+    {"id": "line", "tex_name": "KFLine", "hex": "D8E5E1", "role": "Rules, borders, and structure"},
+    {"id": "aqua", "tex_name": "KFAqua", "hex": "2DD4BF", "role": "Flow, connection, and highlights"},
+    {"id": "coral", "tex_name": "KFCoral", "hex": "F97360", "role": "Caution, return paths, and friction"},
+    {"id": "amber", "tex_name": "KFAmber", "hex": "F5B942", "role": "Pending state and attention"},
+    {"id": "blue", "tex_name": "KFBlue", "hex": "4F86F7", "role": "Information and alternate series"},
+    {"id": "white", "tex_name": "KFWhite", "hex": "FFFFFF", "role": "Text and cards on dark foundations"}
+  ]
+}

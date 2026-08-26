@@ -1,0 +1,29 @@
+{
+  "schema": "kungfu.publications.layout/v1",
+  "formats": {
+    "guide_a4": {
+      "paper": "A4",
+      "width": "210mm",
+      "height": "297mm",
+      "margins": {"top": "17mm", "bottom": "18mm", "left": "18mm", "right": "18mm"}
+    },
+    "slides_16x9": {
+      "paper": "16:9",
+      "width": "13.333in",
+      "height": "7.5in",
+      "safe_margin": "0.62in"
+    }
+  },
+  "spacing": [
+    {"id": "xs", "tex_macro": "KFSpaceXS", "value": "1.5mm"},
+    {"id": "sm", "tex_macro": "KFSpaceSM", "value": "3mm"},
+    {"id": "md", "tex_macro": "KFSpaceMD", "value": "5mm"},
+    {"id": "lg", "tex_macro": "KFSpaceLG", "value": "8mm"},
+    {"id": "xl", "tex_macro": "KFSpaceXL", "value": "12mm"}
+  ],
+  "radii": [
+    {"id": "small", "tex_macro": "KFRadiusSmall", "value": "2.5mm"},
+    {"id": "medium", "tex_macro": "KFRadiusMedium", "value": "3mm"},
+    {"id": "large", "tex_macro": "KFRadiusLarge", "value": "5mm"}
+  ]
+}

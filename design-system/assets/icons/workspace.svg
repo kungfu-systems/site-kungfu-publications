@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Workspace icon</title>
+  <desc id="desc">A divided application window represents an independent workspace.</desc>
+  <rect width="256" height="256" rx="52" fill="#F3F7F6"/>
+  <rect x="45" y="57" width="166" height="142" rx="20" fill="#FFFFFF" stroke="#0F766E" stroke-width="13"/>
+  <path d="M45 93H211M102 93V199" stroke="#0F766E" stroke-width="13"/>
+  <circle cx="71" cy="75" r="6" fill="#F97360"/>
+  <circle cx="91" cy="75" r="6" fill="#F5B942"/>
+</svg>
