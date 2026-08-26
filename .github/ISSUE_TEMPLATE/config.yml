@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Private security report
+    url: https://github.com/kungfu-systems/site-kungfu-publications/security/advisories/new
+    about: Report vulnerabilities or sensitive data exposure privately.

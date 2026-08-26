@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "release_tag": "v2026.08.0",
+  "publications": [
+    {
+      "id": "atlas-lite-obsidian-hermes",
+      "title": "Atlas Lite: Obsidian + Hermes Agent Multi-Agent Workflow",
+      "source_locale": "zh-CN",
+      "core_format": "markdown",
+      "layout": "guide",
+      "expected_pages": 27,
+      "text_probe": "一个人，带一组 AI 工作",
+      "locales": {
+        "zh-CN": {"status": "published", "core": "content/atlas-lite-obsidian-hermes/core/zh-CN.md"},
+        "en-US": {"status": "planned"}
+      },
+      "pdf_filename": "atlas-lite-obsidian-hermes-multi-agent-workflow-{locale}.pdf"
+    },
+    {
+      "id": "atlas-lite-introduction",
+      "title": "Atlas Lite Working Method Introduction",
+      "source_locale": "zh-CN",
+      "core_format": "slides-json",
+      "layout": "deck",
+      "expected_pages": 10,
+      "text_probe": "一个人，不该成为",
+      "locales": {
+        "zh-CN": {"status": "published", "core": "content/atlas-lite-introduction/core/zh-CN.json"},
+        "en-US": {"status": "planned"}
+      },
+      "pdf_filename": "atlas-lite-working-method-introduction-{locale}.pdf"
+    }
+  ]
+}
