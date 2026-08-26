@@ -1,0 +1,43 @@
+name: Verify
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - name: Generate Markdown projections
+        run: make md
+      - name: Verify source and projections
+        run: make check
+      - name: Require committed projections
+        run: git diff --exit-code -- docs
+
+  dco:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7.0.0
+        with:
+          fetch-depth: 0
+      - name: Verify DCO sign-off
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          failed=0
+          for commit in $(git rev-list "${BASE_SHA}..${HEAD_SHA}"); do
+            if ! git show -s --format=%B "$commit" | grep -Eq '^Signed-off-by: .+ <[^>]+>$'; then
+              echo "Missing DCO sign-off: $commit"
+              failed=1
+            fi
+          done
+          exit "$failed"
