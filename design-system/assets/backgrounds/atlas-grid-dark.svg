@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Atlas grid dark background</title>
+  <desc id="desc">A dark grid with a bright orbital path and colored nodes on the right.</desc>
+  <rect width="1600" height="900" fill="#111827"/>
+  <g stroke="#374151" stroke-width="2" opacity="0.8">
+    <path d="M0 150H1600M0 300H1600M0 450H1600M0 600H1600M0 750H1600"/>
+    <path d="M200 0V900M400 0V900M600 0V900M800 0V900M1000 0V900M1200 0V900M1400 0V900"/>
+  </g>
+  <path d="M1024 744C1110 487 1300 320 1530 188" fill="none" stroke="#2DD4BF" stroke-width="18" stroke-linecap="round"/>
+  <path d="M1088 798C1190 566 1360 428 1562 346" fill="none" stroke="#DFF5EF" stroke-width="5" stroke-linecap="round" opacity="0.72"/>
+  <circle cx="1024" cy="744" r="27" fill="#2DD4BF"/>
+  <circle cx="1300" cy="320" r="27" fill="#F5B942"/>
+  <circle cx="1530" cy="188" r="27" fill="#F97360"/>
+</svg>

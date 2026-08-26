@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Core icon</title>
+  <desc id="desc">Concentric circles represent one reviewed content core.</desc>
+  <rect width="256" height="256" rx="52" fill="#DFF5EF"/>
+  <circle cx="128" cy="128" r="72" fill="none" stroke="#0F766E" stroke-width="16"/>
+  <circle cx="128" cy="128" r="36" fill="#2DD4BF"/>
+</svg>

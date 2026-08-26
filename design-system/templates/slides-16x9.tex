@@ -1,0 +1,19 @@
+\documentclass[12pt]{article}
+\usepackage[paperwidth=13.333in,paperheight=7.5in,margin=0in]{geometry}
+\usepackage{kungfu-publications}
+\usepackage{tikz}
+\pagestyle{empty}
+
+\begin{document}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[KFLighter] (current page.south west) rectangle (current page.north east);
+  \node[anchor=north west,text=KFGreen,font=\bfseries\small]
+    at ([xshift=0.7in,yshift=-0.55in]current page.north west) {\KFBrandName};
+  \node[anchor=west,text width=10.8in,text=KFBlack,font=\bfseries\fontsize{36}{43}\selectfont]
+    at ([xshift=0.7in]current page.west) {One idea per page};
+  \node[anchor=north west,text width=9.6in,text=KFSlate,font=\fontsize{19}{27}\selectfont]
+    at ([xshift=0.72in,yshift=-4.35in]current page.north west)
+    {Use plain language, a visible relationship, and one conclusion the reader can repeat.};
+\end{tikzpicture}
+\null\newpage
+\end{document}

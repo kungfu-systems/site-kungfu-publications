@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Review icon</title>
+  <desc id="desc">A shield and check mark represent review and verification.</desc>
+  <rect width="256" height="256" rx="52" fill="#111827"/>
+  <path d="M128 43L196 68V119C196 166 169 198 128 216C87 198 60 166 60 119V68Z" fill="#0F766E" stroke="#2DD4BF" stroke-width="10"/>
+  <path d="M91 126L116 151L166 96" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

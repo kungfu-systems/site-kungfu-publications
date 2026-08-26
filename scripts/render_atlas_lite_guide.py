@@ -15,6 +15,8 @@ import shutil
 import subprocess
 from pathlib import Path
 
+from design_system import install_tex_style
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = REPO_ROOT / "content/atlas-lite-obsidian-hermes/core/zh-CN.md"
@@ -84,10 +86,8 @@ def inline_tex(text: str) -> str:
 PREAMBLE = r"""
 \documentclass[10.5pt,a4paper]{article}
 \usepackage[a4paper,top=17mm,bottom=18mm,left=18mm,right=18mm,headheight=19pt]{geometry}
-\usepackage{fontspec}
-\usepackage{xeCJK}
+\usepackage{kungfu-publications}
 \usepackage{microtype}
-\usepackage[table]{xcolor}
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{booktabs}
@@ -103,26 +103,6 @@ PREAMBLE = r"""
 \usepackage{lastpage}
 \usepackage{amssymb}
 \usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric}
-
-\setmainfont{Helvetica Neue}
-\setsansfont{Helvetica Neue}
-\setmonofont{Menlo}[Scale=0.82]
-\setCJKmainfont{PingFang SC}
-\setCJKsansfont{PingFang SC}
-\setCJKmonofont{PingFang SC}
-\renewcommand{\familydefault}{\sfdefault}
-
-\definecolor{KFBlack}{HTML}{111827}
-\definecolor{KFSlate}{HTML}{374151}
-\definecolor{KFGreen}{HTML}{0F766E}
-\definecolor{KFMint}{HTML}{DFF5EF}
-\definecolor{KFLight}{HTML}{F3F7F6}
-\definecolor{KFLighter}{HTML}{FAFBFB}
-\definecolor{KFLine}{HTML}{D8E5E1}
-\definecolor{KFAqua}{HTML}{2DD4BF}
-\definecolor{KFCoral}{HTML}{F97360}
-\definecolor{KFAmber}{HTML}{F5B942}
-\definecolor{KFBlue}{HTML}{4F86F7}
 
 \hypersetup{
   colorlinks=true,
@@ -677,6 +657,7 @@ ENDING = r"""
 def build_pdf(source: Path, build_dir: Path, output: Path) -> None:
     markdown = source.read_text(encoding="utf-8")
     build_dir.mkdir(parents=True, exist_ok=True)
+    install_tex_style(build_dir)
     output.parent.mkdir(parents=True, exist_ok=True)
     tex_path = build_dir / "atlas-lite-commercial.tex"
     tex_path.write_text(

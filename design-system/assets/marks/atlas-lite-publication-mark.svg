@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" role="img" aria-labelledby="title desc">
+  <title id="title">Atlas Lite publication mark</title>
+  <desc id="desc">A green orbital path connects three nodes beside the Atlas Lite wordmark.</desc>
+  <rect width="720" height="240" rx="28" fill="#FAFBFB"/>
+  <path d="M62 150C103 55 221 38 285 107C339 165 277 208 201 193C124 178 105 92 170 57" fill="none" stroke="#0F766E" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="64" cy="150" r="18" fill="#2DD4BF"/>
+  <circle cx="170" cy="57" r="18" fill="#F5B942"/>
+  <circle cx="285" cy="107" r="18" fill="#F97360"/>
+  <text x="342" y="111" fill="#111827" font-family="Helvetica Neue, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="3">ATLAS LITE</text>
+  <text x="345" y="156" fill="#374151" font-family="Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="600" letter-spacing="4">KUNGFU PUBLICATIONS</text>
+</svg>

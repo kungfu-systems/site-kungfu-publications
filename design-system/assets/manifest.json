@@ -1,0 +1,86 @@
+{
+  "schema": "kungfu.publications.asset-manifest/v1",
+  "assets": [
+    {
+      "id": "atlas-lite-publication-mark",
+      "path": "assets/marks/atlas-lite-publication-mark.svg",
+      "category": "mark",
+      "theme": "light",
+      "aspect_ratio": "3:1",
+      "usage": "Publication covers, title pages, and repository previews.",
+      "alt_zh": "Atlas Lite 出版物标识，由绿色轨道与三颗节点组成"
+    },
+    {
+      "id": "atlas-grid-light",
+      "path": "assets/backgrounds/atlas-grid-light.svg",
+      "category": "background",
+      "theme": "light",
+      "aspect_ratio": "16:9",
+      "usage": "Quiet full-page background for light covers and section openers.",
+      "alt_zh": "浅色网格背景，右侧有绿色轨道和节点"
+    },
+    {
+      "id": "atlas-grid-dark",
+      "path": "assets/backgrounds/atlas-grid-dark.svg",
+      "category": "background",
+      "theme": "dark",
+      "aspect_ratio": "16:9",
+      "usage": "Dark cover or closing-page background with reserved text space.",
+      "alt_zh": "深色网格背景，右侧有青绿色轨道和节点"
+    },
+    {
+      "id": "source-to-projections",
+      "path": "assets/illustrations/source-to-projections.svg",
+      "category": "illustration",
+      "theme": "light",
+      "aspect_ratio": "16:9",
+      "usage": "Explain how one reviewed core produces Markdown and PDF projections.",
+      "alt_zh": "一个核心内容分支生成 Markdown 和 PDF 两种投影"
+    },
+    {
+      "id": "independent-workspaces",
+      "path": "assets/illustrations/independent-workspaces.svg",
+      "category": "illustration",
+      "theme": "light",
+      "aspect_ratio": "16:9",
+      "usage": "Explain isolated agent workspaces and reviewed convergence.",
+      "alt_zh": "三个独立工作区并行工作，经过审查汇入同一交付"
+    },
+    {
+      "id": "icon-core",
+      "path": "assets/icons/core.svg",
+      "category": "icon",
+      "theme": "light",
+      "aspect_ratio": "1:1",
+      "usage": "Represent the reviewed source or content core.",
+      "alt_zh": "代表核心内容的同心圆图标"
+    },
+    {
+      "id": "icon-workspace",
+      "path": "assets/icons/workspace.svg",
+      "category": "icon",
+      "theme": "light",
+      "aspect_ratio": "1:1",
+      "usage": "Represent an independent workspace.",
+      "alt_zh": "代表独立工作区的分栏窗口图标"
+    },
+    {
+      "id": "icon-review",
+      "path": "assets/icons/review.svg",
+      "category": "icon",
+      "theme": "light",
+      "aspect_ratio": "1:1",
+      "usage": "Represent review, verification, or a quality gate.",
+      "alt_zh": "代表审查的盾牌勾选图标"
+    },
+    {
+      "id": "icon-delivery",
+      "path": "assets/icons/delivery.svg",
+      "category": "icon",
+      "theme": "light",
+      "aspect_ratio": "1:1",
+      "usage": "Represent a packaged and downloadable delivery.",
+      "alt_zh": "代表交付的下载盒子图标"
+    }
+  ]
+}
