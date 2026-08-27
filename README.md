@@ -1,7 +1,7 @@
 # Kungfu Publications
 
 Source-owned, multilingual publications about reliable agent-assisted work.
-Each publication has one reviewed content core per locale and two initial
+Each publication has one source-owned content core per locale and two initial
 projections:
 
 - Markdown for direct reading on GitHub;
@@ -11,7 +11,7 @@ The architecture keeps format and language separate:
 
 ```mermaid
 flowchart LR
-    A[Reviewed source-locale core] --> B[Reviewed locale core]
+    A[Source-locale core] --> B[Locale core: draft or reviewed]
     B --> C[GitHub Markdown]
     B --> D[Designed PDF]
     B -. future .-> E[HTML / slides / other formats]
@@ -25,11 +25,13 @@ and PDF projections pass the repository checks.
 
 | Publication | Markdown | PDF |
 | --- | --- | --- |
+| Agent可靠工作法：30天，4000个PR（KFD工作法） | [简体中文](docs/zh-CN/atlas-kungfu-agent-workflow.md) · [English draft](docs/en-US/atlas-kungfu-agent-workflow.md) | [简体中文](https://github.com/kungfu-systems/site-kungfu-publications/releases/latest/download/atlas-kungfu-agent-workflow-zh-CN.pdf) |
 | Atlas Lite: Obsidian + Hermes Agent multi-agent workflow | [简体中文](docs/zh-CN/atlas-lite-obsidian-hermes.md) | [Download](https://github.com/kungfu-systems/site-kungfu-publications/releases/latest/download/atlas-lite-obsidian-hermes-multi-agent-workflow-zh-CN.pdf) |
 | Atlas Lite working method introduction | [简体中文](docs/zh-CN/atlas-lite-introduction.md) | [Download](https://github.com/kungfu-systems/site-kungfu-publications/releases/latest/download/atlas-lite-working-method-introduction-zh-CN.pdf) |
 
-English and additional locales are planned but are not presented as reviewed
-translations yet.
+The English workflow article is generated as a review draft. It is not a
+published translation or a release asset until its core receives linguistic
+and subject review. Additional locales remain planned.
 
 ## Repository Model
 

@@ -79,23 +79,30 @@ def markdown_projection(publication: dict, locale: str, locale_spec: dict) -> st
         body = render_slides_markdown(json.loads(core_path.read_text(encoding="utf-8")), pdf_name)
     else:
         raise ValueError(f"unsupported core format: {publication['core_format']}")
-    notice = (
-        "<!-- Generated from the locale core. Edit content/, not this projection. -->\n\n"
-        f"> [Download PDF]({release_url(pdf_name)}) · "
-        f"[Publication catalog](../../README.md#publications)\n\n"
-    )
+    if locale_spec.get("status") == "draft":
+        notice = (
+            "<!-- Generated from the locale core. Edit content/, not this projection. -->\n\n"
+            "> **Translation status: draft.** The PDF projection is generated locally but is not yet a release asset. · "
+            "[Publication catalog](../../README.md#publications)\n\n"
+        )
+    else:
+        notice = (
+            "<!-- Generated from the locale core. Edit content/, not this projection. -->\n\n"
+            f"> [Download PDF]({release_url(pdf_name)}) · "
+            f"[Publication catalog](../../README.md#publications)\n\n"
+        )
     return notice + body
 
 
-def published_locales(publication: dict):
+def projected_locales(publication: dict):
     for locale, locale_spec in publication["locales"].items():
-        if locale_spec.get("status") == "published":
+        if locale_spec.get("status") in {"published", "draft"} and locale_spec.get("core"):
             yield locale, locale_spec
 
 
 def build_markdown(check: bool) -> None:
     for publication in catalog()["publications"]:
-        for locale, locale_spec in published_locales(publication):
+        for locale, locale_spec in projected_locales(publication):
             target = ROOT / "docs" / locale / f"{publication['id']}.md"
             expected = markdown_projection(publication, locale, locale_spec)
             if check:
@@ -109,8 +116,16 @@ def build_markdown(check: bool) -> None:
 
 def build_pdfs() -> None:
     for publication in catalog()["publications"]:
-        renderer = "render_atlas_lite_guide.py" if publication["layout"] == "guide" else "render_atlas_lite_intro.py"
-        for locale, locale_spec in published_locales(publication):
+        renderers = {
+            "guide": "render_atlas_lite_guide.py",
+            "deck": "render_atlas_lite_intro.py",
+            "feature-article": "render_atlas_kungfu_workflow_article.py",
+        }
+        try:
+            renderer = renderers[publication["layout"]]
+        except KeyError as error:
+            raise ValueError(f"unsupported publication layout: {publication['layout']}") from error
+        for locale, locale_spec in projected_locales(publication):
             output = ROOT / "_build" / "pdf" / publication["pdf_filename"].format(locale=locale)
             build_dir = ROOT / "_build" / "tex" / publication["id"] / locale
             subprocess.run(
@@ -127,20 +142,22 @@ def build_pdfs() -> None:
                 cwd=ROOT,
                 check=True,
             )
-            verify_pdf(output, publication)
+            verify_pdf(output, publication, locale_spec)
 
 
-def verify_pdf(pdf: Path, publication: dict) -> None:
+def verify_pdf(pdf: Path, publication: dict, locale_spec: dict) -> None:
     pdfinfo = shutil.which("pdfinfo")
     pdftotext = shutil.which("pdftotext")
     if pdfinfo is None or pdftotext is None:
         raise RuntimeError("Poppler pdfinfo and pdftotext are required for PDF verification")
     info = subprocess.run([pdfinfo, str(pdf)], check=True, capture_output=True, text=True).stdout
     match = re.search(r"^Pages:\s+(\d+)$", info, flags=re.MULTILINE)
-    if match is None or int(match.group(1)) != publication["expected_pages"]:
+    expected_pages = locale_spec.get("expected_pages", publication["expected_pages"])
+    text_probe = locale_spec.get("text_probe", publication["text_probe"])
+    if match is None or int(match.group(1)) != expected_pages:
         actual = match.group(1) if match else "unknown"
         raise RuntimeError(
-            f"unexpected page count for {pdf.name}: {actual}; expected {publication['expected_pages']}"
+            f"unexpected page count for {pdf.name}: {actual}; expected {expected_pages}"
         )
     text = subprocess.run(
         [pdftotext, "-layout", str(pdf), "-"],
@@ -149,10 +166,10 @@ def verify_pdf(pdf: Path, publication: dict) -> None:
         text=True,
     ).stdout
     pages = [page.strip() for page in text.split("\f") if page.strip()]
-    if len(pages) != publication["expected_pages"]:
+    if len(pages) != expected_pages:
         raise RuntimeError(f"one or more PDF pages have no extractable text: {pdf.name}")
-    if publication["text_probe"] not in text:
-        raise RuntimeError(f"expected text is missing from PDF: {publication['text_probe']}")
+    if text_probe not in text:
+        raise RuntimeError(f"expected text is missing from PDF: {text_probe}")
     print(f"verified PDF: {pdf.relative_to(ROOT)} ({len(pages)} pages)")
 
 
@@ -164,7 +181,7 @@ def verify() -> None:
     for publication in data["publications"]:
         if publication["source_locale"] not in publication["locales"]:
             raise SystemExit(f"missing source locale for {publication['id']}")
-        for locale, locale_spec in published_locales(publication):
+        for locale, locale_spec in projected_locales(publication):
             core_path = ROOT / locale_spec["core"]
             if not core_path.is_file():
                 raise SystemExit(f"missing core: {core_path.relative_to(ROOT)}")
