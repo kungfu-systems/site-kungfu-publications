@@ -2,6 +2,8 @@
 
 ## Read Publications
 
+- [Agent可靠工作法：30天，4000个PR（KFD工作法）— 简体中文](zh-CN/atlas-kungfu-agent-workflow.md)
+- [Reliable Agent Workflow: 30 Days, 4,000 Pull Requests — English draft](en-US/atlas-kungfu-agent-workflow.md)
 - [Atlas Lite: Obsidian + Hermes Agent multi-agent workflow — 简体中文](zh-CN/atlas-lite-obsidian-hermes.md)
 - [Atlas Lite working method introduction — 简体中文](zh-CN/atlas-lite-introduction.md)
 

@@ -15,7 +15,7 @@ pdf: design-check
 	python3 scripts/publish.py pdf
 
 check: design-check
-	python3 -m py_compile scripts/design_system.py scripts/publish.py scripts/render_atlas_lite_guide.py scripts/render_atlas_lite_intro.py
+	python3 -m py_compile scripts/design_system.py scripts/publish.py scripts/render_atlas_lite_guide.py scripts/render_atlas_lite_intro.py scripts/render_atlas_kungfu_workflow_article.py
 	python3 scripts/publish.py verify
 	git diff --check
 

@@ -29,6 +29,25 @@
         "en-US": {"status": "planned"}
       },
       "pdf_filename": "atlas-lite-working-method-introduction-{locale}.pdf"
+    },
+    {
+      "id": "atlas-kungfu-agent-workflow",
+      "title": "Reliable Agent Workflow: 30 Days, 4,000 Pull Requests",
+      "source_locale": "zh-CN",
+      "core_format": "markdown",
+      "layout": "feature-article",
+      "expected_pages": 13,
+      "text_probe": "Work State 保存现实现在是什么",
+      "locales": {
+        "zh-CN": {"status": "published", "core": "content/atlas-kungfu-agent-workflow/core/zh-CN.md"},
+        "en-US": {
+          "status": "draft",
+          "core": "content/atlas-kungfu-agent-workflow/core/en-US.md",
+          "expected_pages": 14,
+          "text_probe": "Work State records what reality is now"
+        }
+      },
+      "pdf_filename": "atlas-kungfu-agent-workflow-{locale}.pdf"
     }
   ]
 }
