@@ -1,0 +1,26 @@
+schema = 1
+
+[project]
+type = "publication-artifact"
+name = "site-kungfu-publications"
+
+[publication]
+kind = "report"
+title = "Kungfu Publications"
+version = "2026.08.0"
+primary_artifact = "_build/pdf/atlas-kungfu-agent-workflow-zh-CN.pdf"
+artifact_paths = ["_build/pdf"]
+metadata_paths = ["catalog.json", "README.md"]
+source_paths = ["content", "design-system", "scripts", "catalog.json", "Makefile", "LICENSE"]
+
+[lifecycle.install]
+command = "python3 --version"
+
+[lifecycle.build]
+command = "make all"
+
+[lifecycle.verify]
+command = "make md && make check && git diff --exit-code -- docs"
+
+[lifecycle.publish]
+command = "bash scripts/release-pdfs.sh"

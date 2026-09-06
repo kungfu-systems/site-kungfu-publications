@@ -22,13 +22,47 @@ jobs:
           ref: ${{ inputs.tag || github.ref }}
       - name: Install PDF toolchain
         run: brew install poppler tectonic
+      - name: Validate Buildchain publication lifecycle
+        uses: kungfu-systems/buildchain/actions/validate-config@v4
+        with:
+          config-required: ${{ hashFiles('.buildchain/buildchain.toml') != '' }}
+          require-lifecycle-stages: ${{ hashFiles('.buildchain/buildchain.toml') != '' && 'build,verify,publish' || '' }}
       - name: Build and verify projections
-        run: make all
+        uses: kungfu-systems/buildchain/actions/run-lifecycle@v4
+        with:
+          stage: build
+          command: ${{ hashFiles('.buildchain/buildchain.toml') == '' && 'make all' || '' }}
+          artifact-name: kungfu-publications-pdf
+          artifact-paths: _build/pdf
+          manifest-path: .buildchain/artifacts/pdf-manifest.json
+          summary-path: .buildchain/artifacts/pdf-summary.json
+      - name: Verify committed projections
+        uses: kungfu-systems/buildchain/actions/run-lifecycle@v4
+        with:
+          stage: verify
+          command: ${{ hashFiles('.buildchain/buildchain.toml') == '' && 'make md && make check && git diff --exit-code -- docs' || '' }}
+          artifact-name: kungfu-publications-source
+          artifact-paths: docs
+          manifest-path: .buildchain/artifacts/source-manifest.json
+          summary-path: .buildchain/artifacts/source-summary.json
       - name: Publish release assets
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
-        run: |
-          gh release view "$RELEASE_TAG" >/dev/null 2>&1 || \
-            gh release create "$RELEASE_TAG" --title "$RELEASE_TAG" --generate-notes
-          gh release upload "$RELEASE_TAG" _build/pdf/*.pdf _build/pdf/SHA256SUMS --clobber
+        uses: kungfu-systems/buildchain/actions/run-lifecycle@v4
+        with:
+          stage: publish
+          command: >-
+            ${{ hashFiles('scripts/release-pdfs.sh') == '' &&
+            '(gh release view "$RELEASE_TAG" >/dev/null 2>&1 || gh release create "$RELEASE_TAG" --title "$RELEASE_TAG" --generate-notes) && gh release upload "$RELEASE_TAG" _build/pdf/*.pdf _build/pdf/SHA256SUMS .buildchain/artifacts/pdf-manifest.json .buildchain/artifacts/pdf-summary.json --clobber' || '' }}
+          artifact-name: kungfu-publications-release
+          artifact-paths: _build/pdf
+          manifest-path: .buildchain/artifacts/release-manifest.json
+          summary-path: .buildchain/artifacts/release-summary.json
+      - name: Retain Buildchain lifecycle evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: publications-buildchain-evidence
+          path: .buildchain/artifacts/*.json
+          if-no-files-found: error

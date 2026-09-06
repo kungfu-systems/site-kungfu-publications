@@ -2,3 +2,6 @@
 __pycache__/
 *.pyc
 _build/
+.buildchain/runtime/
+.buildchain/artifacts/
+.buildchain/logs/

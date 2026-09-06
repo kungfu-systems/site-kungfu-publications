@@ -7,19 +7,16 @@ on:
       - main
 
 permissions:
+  actions: read
   contents: read
+  pull-requests: read
 
 jobs:
   source:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v7.0.0
-      - name: Generate Markdown projections
-        run: make md
-      - name: Verify source and projections
-        run: make check
-      - name: Require committed projections
-        run: git diff --exit-code -- docs
+    uses: kungfu-systems/buildchain/.github/workflows/public-build-check.yml@v4-alpha
+    with:
+      buildchain-ref: v4-alpha
+      mode: verify
 
   dco:
     if: github.event_name == 'pull_request'
