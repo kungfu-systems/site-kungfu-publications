@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "release_tag": "v2026.08.0",
+  "release_tag": "v2026.08.1-alpha.0",
   "publications": [
     {
       "id": "atlas-lite-obsidian-hermes",
