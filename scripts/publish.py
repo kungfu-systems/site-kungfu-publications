@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -204,10 +205,60 @@ def checksums() -> None:
     print(target.relative_to(ROOT))
 
 
+def publish_release(dry_run: bool = False) -> None:
+    data = catalog()
+    tag = os.environ.get("RELEASE_TAG", "")
+    if tag != data["release_tag"] or not re.fullmatch(r"v\d+\.\d+\.\d+(?:-[\w.-]+)?", tag):
+        raise RuntimeError("RELEASE_TAG must match the reviewed catalog release_tag")
+    prerelease = "-" in tag
+    pdfs = sorted(
+        ROOT / "_build" / "pdf" / publication["pdf_filename"].format(locale=locale)
+        for publication in data["publications"]
+        for locale, spec in publication["locales"].items()
+        if spec.get("status") == "published" and spec.get("core")
+    )
+    if not pdfs or len(pdfs) != len(set(pdfs)):
+        raise RuntimeError("release must contain a non-empty, unique set of published PDFs")
+    evidence = [ROOT / ".buildchain/artifacts" / name
+                for name in ("pdf-manifest.json", "pdf-summary.json")]
+    for asset in pdfs + evidence:
+        if not asset.is_file():
+            raise RuntimeError(f"missing release asset: {asset.relative_to(ROOT)}")
+    checksum_text = "".join(
+        f"{hashlib.sha256(pdf.read_bytes()).hexdigest()}  {pdf.name}\n" for pdf in pdfs
+    )
+    checksum_path = ROOT / "_build" / "release" / "SHA256SUMS"
+    assets = [str(p.relative_to(ROOT)) for p in pdfs + [checksum_path] + evidence]
+    create = ["gh", "release", "create", tag, "--verify-tag", "--title", tag, "--generate-notes"]
+    if prerelease:
+        create.extend(["--prerelease", "--latest=false"])
+    upload = ["gh", "release", "upload", tag, *assets, "--clobber"]
+    if dry_run:
+        print(json.dumps({"tag": tag, "prerelease": prerelease, "create": create,
+                          "upload": upload, "checksums": checksum_text}, indent=2))
+        return
+    existing = subprocess.run(
+        ["gh", "release", "view", tag, "--json", "isPrerelease,isDraft"],
+        cwd=ROOT, capture_output=True, text=True,
+    )
+    if existing.returncode == 0:
+        state = json.loads(existing.stdout)
+        if state["isPrerelease"] != prerelease or state["isDraft"]:
+            raise RuntimeError("existing release classification does not match the reviewed tag")
+    else:
+        subprocess.run(create, cwd=ROOT, check=True)
+    checksum_path.parent.mkdir(parents=True, exist_ok=True)
+    checksum_path.write_text(checksum_text, encoding="utf-8")
+    subprocess.run(upload, cwd=ROOT, check=True)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("md", "pdf", "all", "verify", "checksums"))
+    parser.add_argument("command", choices=("md", "pdf", "all", "verify", "checksums", "release"))
+    parser.add_argument("--dry-run", action="store_true", help="Preview release assets without publishing")
     args = parser.parse_args()
+    if args.dry_run and args.command != "release":
+        parser.error("--dry-run applies only to release")
     if args.command in {"md", "all"}:
         build_markdown(check=False)
     if args.command in {"pdf", "all"}:
@@ -216,6 +267,8 @@ def main() -> int:
         verify()
     if args.command in {"pdf", "all", "checksums"}:
         checksums()
+    if args.command == "release":
+        publish_release(dry_run=args.dry_run)
     return 0
 
 

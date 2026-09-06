@@ -7,7 +7,7 @@ name = "site-kungfu-publications"
 [publication]
 kind = "report"
 title = "Kungfu Publications"
-version = "2026.08.0"
+version = "2026.08.1-alpha.0"
 primary_artifact = "_build/pdf/atlas-kungfu-agent-workflow-zh-CN.pdf"
 artifact_paths = ["_build/pdf"]
 metadata_paths = ["catalog.json", "README.md"]

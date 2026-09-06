@@ -153,7 +153,7 @@ PREAMBLE = r"""
 \newtcolorbox{codebox}[1][]{
   enhanced,breakable,colback=KFBlack,colframe=KFBlack,boxrule=0pt,
   arc=2.5mm,left=3.5mm,right=3.5mm,top=3mm,bottom=3mm,
-  fontupper=\ttfamily\footnotesize\color{white},#1
+  colupper=white,fontupper=\ttfamily\footnotesize,#1
 }
 \newtcolorbox{diagrambox}[1][]{
   enhanced,colback=KFLighter,colframe=KFLine,boxrule=0.6pt,
