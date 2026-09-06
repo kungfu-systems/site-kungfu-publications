@@ -14,3 +14,7 @@ agent-assisted work.
 
 Run `make check` before proposing a change. Run `make all` when the PDF
 toolchain is available and the change affects published content or layout.
+
+Buildchain v4 owns CI verification and the declared PDF build, verification,
+and publish stages in `.buildchain/buildchain.toml`. Keep the existing reviewed
+release tag trigger and retain the lifecycle artifact manifests with each release.
