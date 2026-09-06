@@ -12,11 +12,21 @@ permissions:
   pull-requests: read
 
 jobs:
-  source:
+  buildchain-source:
     uses: kungfu-systems/buildchain/.github/workflows/public-build-check.yml@v4-alpha
     with:
       buildchain-ref: v4-alpha
       mode: verify
+
+  source:
+    if: always()
+    needs: buildchain-source
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Require successful Buildchain source verification
+        env:
+          BUILDCHAIN_RESULT: ${{ needs.buildchain-source.result }}
+        run: test "$BUILDCHAIN_RESULT" = success
 
   dco:
     if: github.event_name == 'pull_request'
